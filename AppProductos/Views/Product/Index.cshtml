@@ -1,0 +1,59 @@
+﻿@model IEnumerable<AppProductos.Models.Producto>
+@{
+    ViewData["Title"] = "Products Page";
+}
+
+<h2>Lista de Productos</h2>
+
+<form method="get">
+    <input type="text" class="form-control" name="searchTerm" value="@ViewBag.SearchTerm" placeholder="Buscar Producto" />
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+<div class="mt-4">
+    <a href="/Product/Add" class="btn btn-primary col">Agregar Producto</a>
+    <table class="table table-bordered mt-4">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Descripición</th>
+                <th>Categoria</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var producto in Model)
+            {
+            <tr>
+                <td>@producto.Nombre</td>
+                <td>@producto.Precio</td>
+                <td>@producto.Descripcion</td>
+                <td>@producto.Categoria</td>
+                <td>
+                    <a href="/Product/Edit/@producto.Id" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="/Product/Delete/@producto.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                    <a href="#" onclick="confirmDelete(@producto.Id)">Eliminar</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            @for (int i = 1; i <= ViewBag.TotalPaginas; i++)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/Product?pagina=@i&searchTerm=@ViewBag.SearchTerm">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+<script>
+    function confirmDelete(id){
+        if(confirm("Estas seguro de eliminar este producto?")){
+            window.location.href = "/Product/Delete/" + id;
+        }
+    }
+</script>

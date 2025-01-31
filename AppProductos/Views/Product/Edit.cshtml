@@ -1,0 +1,31 @@
+﻿@model AppProductos.Models.Producto;
+@{
+    ViewData["Title"] = "Editar Producto";
+}
+
+<h2>Editar Productos</h2>
+<form asp-action="Edit" method="post" class="mt-4">
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label for="Nombre" class="form-label">Nombre</label>
+        <input asp-for="Nombre" type="text" class="form-control" placeholder="Ingrese su nombre" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="Descripcion" class="form-label">Descripcion</label>
+        <input asp-for="Descripcion" type="text" class="form-control" placeholder="Ingrese su descripcion" />
+        <span asp-validation-for="Descripcion" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="Precio" class="form-label">Precio</label>
+        <input asp-for="Precio" type="number" class="form-control" placeholder="Ingrese su precio" />
+        <span asp-validation-for="Precio" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="Categoria" class="form-label">Categoria</label>
+        <input asp-for="Categoria" type="text" class="form-control" placeholder="Ingrese su categoria" />
+        <span asp-validation-for="Categoria" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Editar</button>
+    <a href="/Product" class="btn btn-secondary">Cancelar</a>
+</form>

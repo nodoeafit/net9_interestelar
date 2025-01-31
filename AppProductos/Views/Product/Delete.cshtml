@@ -1,0 +1,16 @@
+﻿@model AppProductos.Models.Producto
+
+<h2>Eliminar Producto</h2>
+<p>¿Estas seguro que deseas eliminar este producto?</p>
+<div class="card">
+	<div class="card-body">
+		<h5 class="card-title">@Model.Nombre</h5>
+		<p class="card-text">@Model.Precio</p>
+		<p class="card-text">@Model.Categoria</p>
+	</div>
+</div>
+<form asp-action="ConfirmDelete" method="post">
+	<input type="hidden" asp-for="Id"/>	
+	<button type="submit" class="btn btn-danger">Eliminar</button>
+	<a href="/Product" class="btn btn-secondary">Cancelar</a>
+</form>
